@@ -75,10 +75,10 @@ class DgramAsyncioProtocol(asyncio.DatagramProtocol, AbstractAsyncioTransport):
 
     # AbstractAsyncioTransport API
 
-    def openClientMode(self, iface=None):
+    def openClientMode(self, iface=None, allow_broadcast=None):
         try:
             c = self.loop.create_datagram_endpoint(
-                lambda: self, local_addr=iface, family=self.sockFamily
+                lambda: self, local_addr=iface, family=self.sockFamily, allow_broadcast=allow_broadcast
             )
             # Avoid deprecation warning for asyncio.async()
             self._lport = asyncio.ensure_future(c)

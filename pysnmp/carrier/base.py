@@ -251,7 +251,7 @@ class AbstractTransport:
 
     # Public API
 
-    def openClientMode(self, iface=None):
+    def openClientMode(self, iface=None, allow_broadcast=None):
         raise error.CarrierError('Method not implemented')
 
     def openServerMode(self, iface):

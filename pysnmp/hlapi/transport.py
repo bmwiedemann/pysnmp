@@ -15,11 +15,12 @@ class AbstractTransportTarget:
     transportDomain = None
     protoTransport = AbstractTransport
 
-    def __init__(self, transportAddr, timeout=1, retries=5, tagList=null):
+    def __init__(self, transportAddr, timeout=1, retries=5, tagList=null, allow_broadcast=None):
         self.transportAddr = self._resolveAddr(transportAddr)
         self.timeout = timeout
         self.retries = retries
         self.tagList = tagList
+        self.allow_broadcast = allow_broadcast
         self.iface = None
         self.transport = None
 
@@ -50,7 +51,7 @@ class AbstractTransportTarget:
         return self
 
     def openClientMode(self):
-        self.transport = self.protoTransport().openClientMode(self.iface)
+        self.transport = self.protoTransport().openClientMode(self.iface, self.allow_broadcast)
         return self.transport
 
     def verifyDispatcherCompatibility(self, snmpEngine):

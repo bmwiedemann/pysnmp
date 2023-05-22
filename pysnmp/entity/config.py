@@ -5,7 +5,7 @@
 # License: https://www.pysnmp.com/pysnmp/license.html
 #
 from pyasn1.compat.octets import null
-from pysnmp.carrier.asyncore.dgram import udp, udp6, unix
+from pysnmp.carrier.asyncio.dgram import udp, udp6
 from pysnmp.proto.secmod.rfc3414.auth import hmacmd5, hmacsha, noauth
 from pysnmp.proto.secmod.rfc3414.priv import des, nopriv
 from pysnmp.proto.secmod.rfc3826.priv import aes
@@ -21,7 +21,6 @@ from pysnmp import debug
 # Transports
 snmpUDPDomain = udp.snmpUDPDomain
 snmpUDP6Domain = udp6.snmpUDP6Domain
-snmpLocalDomain = unix.snmpLocalDomain
 
 # Auth protocol
 usmHMACMD5AuthProtocol = hmacmd5.HmacMd5.serviceID

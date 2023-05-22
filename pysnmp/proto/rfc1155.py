@@ -131,7 +131,8 @@ class Opaque(univ.OctetString):
 
 
 class ObjectName(univ.ObjectIdentifier):
-    pass
+    def prettyPrint(self, scope: int=0):
+        return self.prettyOut(self)
 
 
 class TypeCoercionHackMixIn:  # XXX keep this old-style class till pyasn1 types becomes new-style

@@ -11,8 +11,8 @@ mibBuilder.loadTexts = True
 
 # Load MIB modules
 mibBuilder.loadModules('SNMPv2-MIB')
-# mibBuilder.addMibSources(builder.DirMibSource('/Users/lextm/pysnmp.com/pysnmp/mibs'))
-# mibBuilder.loadModule('LEXTUDIO-MIB')
+mibBuilder.addMibSources(builder.DirMibSource('/Users/lextm/pysnmp.com/pysnmp/mibs'))
+mibBuilder.loadModule('LEXTUDIO-MIB')
 
 # Create MIB view controller
 mibViewController = view.MibViewController(mibBuilder)

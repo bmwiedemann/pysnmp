@@ -9,7 +9,7 @@
 class ErrorIndication(Exception):
     """SNMPv3 error-indication values"""
 
-    def __init__(self, descr=None):
+    def __init__(self, descr: str=None):
         self.__value = self.__descr = self.__class__.__name__[0].lower() + self.__class__.__name__[1:]
         if descr:
             self.__descr = descr

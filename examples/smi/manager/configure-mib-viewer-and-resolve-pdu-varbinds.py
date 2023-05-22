@@ -8,6 +8,7 @@ variable-bindings into MIB objects or the other way around.
 The code that configures MIB compiler is similar to what
 happens inside the pysnmp.hlapi API.
 """#
+from pysnmp.proto.rfc1902 import ObjectIdentifier
 from pysnmp.smi import builder, view, compiler, rfc1902
 
 # Assemble MIB browser
@@ -16,8 +17,18 @@ mibViewController = view.MibViewController(mibBuilder)
 compiler.addMibCompiler(mibBuilder, sources=['file:///usr/share/snmp/mibs',
                                              'https://mibs.pysnmp.com/asn1/@mib@'])
 
+mibBuilder.loadTexts = True
 # Pre-load MIB modules we expect to work with
 mibBuilder.loadModules("SNMPv2-MIB", "SNMP-COMMUNITY-MIB")
+
+# Create an OID object
+oid = ObjectIdentifier('1.3.6.1.2.1.1.3')
+
+# Get the MIB name and symbol name for the OID
+modName, symName, suffix = mibViewController.getNodeLocation(oid)
+
+# Get the MIB node for the OID
+mibNode, = mibBuilder.importSymbols(modName, symName)
 
 # This is what we can get in TRAP PDU
 varBinds = [

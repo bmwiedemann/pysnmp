@@ -680,7 +680,8 @@ class Bits(OctetString):
 
 
 class ObjectName(univ.ObjectIdentifier):
-    pass
+    def prettyPrint(self, scope=0):
+        return self.prettyOut(self)
 
 
 class SimpleSyntax(rfc1155.TypeCoercionHackMixIn, univ.Choice):
