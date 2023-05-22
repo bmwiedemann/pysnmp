@@ -6,19 +6,21 @@
 #
 from pyasn1.type import univ
 from pyasn1.codec.ber import decoder, eoo
+from pyasn1.codec.streaming import readFromStream
 from pyasn1.error import PyAsn1Error
 from pysnmp.proto.error import ProtocolError
 
 
 def decodeMessageVersion(wholeMsg):
     try:
-        seq, wholeMsg = decoder.decode(
+        substrate_fun = lambda a, b, c, d: readFromStream(b, c)
+        wholeMsg, seq = decoder.decode(
             wholeMsg, asn1Spec=univ.Sequence(),
-            recursiveFlag=False, substrateFun=lambda a, b, c: (a, b[:c])
+            recursiveFlag=False, substrateFun=substrate_fun
         )
         ver, wholeMsg = decoder.decode(
             wholeMsg, asn1Spec=univ.Integer(),
-            recursiveFlag=False, substrateFun=lambda a, b, c: (a, b[:c])
+            recursiveFlag=False, substrateFun=substrate_fun
         )
         if eoo.endOfOctets.isSameTypeWith(ver):
             raise ProtocolError('EOO at SNMP version component')
