@@ -1,3 +1,9 @@
+Revision 6.0.0, released 2023-10-21
+-----------------------------------
+
+- Python 12 only test release.
+- Removed all legacy code so that the API surface is smaller and your code might break.
+
 Revision 5.0.29, released 2023-09-12
 ------------------------------------
 

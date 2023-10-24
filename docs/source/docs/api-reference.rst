@@ -15,49 +15,8 @@ right into your Python interactive session.
 
 Most of SNMP operations involve packet exchange over network. PySNMP
 is shipped with a set of bindings to popular asynchronous Python I/O
-frameworks that let you run PySNMP in parallel with other tasks your
+framework that let you run PySNMP in parallel with other tasks your
 application may perform.
-
-Synchronous SNMP
-----------------
-
-Most simple and straightforward way to use PySNMP is by employing its
-Synchronous, blocking API. It's also the default API offered by
-users on *pysnmp.hlapi* sub-package import.
-
-Command Generator
-
-.. toctree::
-   :maxdepth: 2
-
-   /docs/hlapi/asyncio/manager/cmdgen/getcmd
-   /docs/hlapi/asyncio/manager/cmdgen/setcmd
-   /docs/hlapi/asyncio/manager/cmdgen/nextcmd
-   /docs/hlapi/asyncio/manager/cmdgen/bulkcmd
-
-Notification Originator
-
-.. toctree::
-   :maxdepth: 2
-
-   /docs/hlapi/asyncio/agent/ntforg/notification 
-
-Transport configuration
-+++++++++++++++++++++++
-
-The following shortcut classes convey configuration information to
-SNMP engine's Local Configuration Datastore (:RFC:`2271#section-3.4.2`)
-as well as to underlying socket API. Once committed to LCD, SNMP engine
-saves its configuration for the lifetime of SNMP engine object.
-
-.. toctree::
-   :maxdepth: 2
-
-.. autoclass:: pysnmp.hlapi.UdpTransportTarget
-   :members: setLocalAddress
-
-.. autoclass:: pysnmp.hlapi.Udp6TransportTarget
-   :members: setLocalAddress
 
 Asynchronous: asyncio
 ---------------------
